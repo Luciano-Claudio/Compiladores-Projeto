@@ -3,12 +3,13 @@ grammar Expr;
 prog: stat* EOF;
 
 stat
-    : 'var' ID ('=' expr)?                               #DeclVar
-    | ID '=' expr                                       #Atribuicao
+    : 'var' ID ('=' expr)? ';'                                          #DeclVar
+    | ID '=' expr ';'                                                 #Atribuicao
     | 'if' '(' boolExpr ')' '{' stat* '}'
-      elseifClause* elseClause?                        #IfStat
-    | 'while' '(' boolExpr ')' '{' stat* '}'            #WhileStat
-    | 'print' '(' expr ')'                                #PrintStat
+     elseifClause* elseClause?    #IfStat
+    | 'while' '(' boolExpr ')' '{' stat* '}'                           #WhileStat
+    | 'print' '(' expr ')' ';'                                          #PrintStat
+    | 'print' '(' STRING ')' ';'                                        #PrintStrStat
     ;
 
 elseifClause: 'else' 'if' '(' boolExpr ')' '{' stat* '}';
@@ -33,7 +34,6 @@ atom
     : '(' NESTED=expr ')'         #Parenteses
     | NUMBER                       #Numero
     | ID                           #UsoVariavel
-    | STRING                       #StringLiteral
     | 'input' '(' STRING ')'        #Input
     ;
 

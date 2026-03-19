@@ -1,7 +1,33 @@
 package com.uepb.compiler;
 
 import com.uepb.ExprBaseVisitor;
-import com.uepb.ExprParser.*;
+import com.uepb.ExprParser.AndContext;
+import com.uepb.ExprParser.AndPassthroughContext;
+import com.uepb.ExprParser.AtomPassthroughContext;
+import com.uepb.ExprParser.AtribuicaoContext;
+import com.uepb.ExprParser.BoolParentesesContext;
+import com.uepb.ExprParser.ComparacaoContext;
+import com.uepb.ExprParser.DeclVarContext;
+import com.uepb.ExprParser.ElseClauseContext;
+import com.uepb.ExprParser.ElseifClauseContext;
+import com.uepb.ExprParser.FactorPassthroughContext;
+import com.uepb.ExprParser.IfStatContext;
+import com.uepb.ExprParser.InputContext;
+import com.uepb.ExprParser.MulDivContext;
+import com.uepb.ExprParser.NotContext;
+import com.uepb.ExprParser.NotPassthroughContext;
+import com.uepb.ExprParser.NumeroContext;
+import com.uepb.ExprParser.OrContext;
+import com.uepb.ExprParser.OrPassthroughContext;
+import com.uepb.ExprParser.ParentesesContext;
+import com.uepb.ExprParser.PotenciaContext;
+import com.uepb.ExprParser.PrintStatContext;
+import com.uepb.ExprParser.PrintStrStatContext;
+import com.uepb.ExprParser.ProgContext;
+import com.uepb.ExprParser.SomaSubContext;
+import com.uepb.ExprParser.TermPassthroughContext;
+import com.uepb.ExprParser.UsoVariavelContext;
+import com.uepb.ExprParser.WhileStatContext;
 
 public class Calculadora extends ExprBaseVisitor<Void> {
 
@@ -104,11 +130,6 @@ public class Calculadora extends ExprBaseVisitor<Void> {
     }
 
     @Override
-    public Void visitStringLiteral(StringLiteralContext ctx) {
-        return null;
-    }
-
-    @Override
     public Void visitInput(InputContext ctx) {
         return null;
     }
@@ -150,6 +171,10 @@ public class Calculadora extends ExprBaseVisitor<Void> {
 
     @Override
     public Void visitComparacao(ComparacaoContext ctx) {
+        return null;
+    }
+    @Override
+    public Void visitPrintStrStat(PrintStrStatContext ctx) {
         return null;
     }
 }
