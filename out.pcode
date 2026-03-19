@@ -1,0 +1,116 @@
+//a
+
+// a = 2
+push $0
+push 2
+sto
+
+// b = 3
+push $1
+push 3
+sto
+
+// print(a + b / 3)
+push $0
+lod
+
+push $1
+lod
+push 3
+div
+
+add
+out
+hlt
+
+//------------------------------------------------
+
+//b
+
+// a = 5
+push $0
+push 5
+sto
+
+// b = 3
+push $1
+push 3
+sto
+
+// r = (a * 2) + (b * b)
+push $2
+
+push $0
+lod
+push 2
+mul
+
+push $1
+lod
+push $1
+lod
+mul
+
+add
+sto
+hlt
+
+//------------------------------------------------
+
+//c
+
+// x = 5
+push $0
+push 5
+sto
+
+// print(x > 100 / 5)
+push $0
+lod
+push 100
+push 5
+div
+grt
+out
+hlt
+
+//------------------------------------------------
+
+//d
+
+// x = 5
+push $0
+push 5
+sto
+
+// teste: x > 100 / 5
+push $0
+lod
+push 100
+push 5
+div
+grt
+fjp ELSE
+
+// then
+push $0
+lod
+push 10
+mul
+out
+ujp FIM
+
+ELSE:
+push $0
+lod
+push 10
+div
+out
+
+FIM:
+hlt
+
+//------------------------------------------------
+
+
+
