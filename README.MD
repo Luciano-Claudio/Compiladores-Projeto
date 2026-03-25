@@ -5,7 +5,7 @@ Este é um projeto base para a disciplina de Compiladores, desenvolvido em Java 
 ## Executar projeto
 
 ```bash
-./mvnw clean package && java -jar target/compiler.jar -v true -i example.expr
+./mvnw clean package
 java -jar target/compiler.jar -i example.expr -o out.pcode
 java -jar pcode.jar "-Input=out.pcode" "-Debug=false"
 ```
