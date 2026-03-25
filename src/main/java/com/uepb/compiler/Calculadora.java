@@ -49,6 +49,10 @@ public class Calculadora extends ExprBaseVisitor<Void> {
 
     @Override
     public Void visitProg(ProgContext ctx) {
+        visit(ctx.stat(labelCounter));
+        pcode.hlt();
+        code.append("out\n");
+        code.append("hlt\n");
         return null;
     }
 
