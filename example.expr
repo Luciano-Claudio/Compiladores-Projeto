@@ -1,54 +1,365 @@
-// teste completo da linguagem
+// ============================================================
+// PROGRAMA DE TESTE COMPLETO
+// Testa todas as funcionalidades da linguagem
+// ============================================================
+
+
+// ============================================================
+// BLOCO 1 — Declaração de variáveis
+// ============================================================
 
 var a = 10;
 var b = 3;
-var c = input("digite um valor");
-var d;
+var c;              // sem valor inicial → deve ser 0
+var resultado;
 
-// operadores aritmeticos e precedencia
-d = a + b * 2 ^ 3 - 1;
 
-// and / or / not
-if (a > 5 and b < 10) {
-    print("a maior 5 e b menor 10");
+// ============================================================
+// BLOCO 2 — Atribuição e aritmética básica
+// ============================================================
+
+resultado = a + b;
+print("a + b =");
+print(resultado);
+print("\n");
+
+resultado = a - b;
+print("a - b =");
+print(resultado);
+print("\n");
+
+resultado = a * b;
+print("a * b =");
+print(resultado);
+print("\n");
+
+resultado = a / b;
+print("a / b =");
+print(resultado);
+print("\n");
+
+
+// ============================================================
+// BLOCO 3 — Precedência aritmética (sem parênteses)
+// a + b * 2 deve ser a + (b * 2) = 10 + 6 = 16
+// ============================================================
+
+resultado = a + b * 2;
+print("a + b * 2 (esperado 16) =");
+print(resultado);
+print("\n");
+
+
+// ============================================================
+// BLOCO 4 — Parênteses mudando precedência
+// (a + b) * 2 deve ser 13 * 2 = 26
+// ============================================================
+
+resultado = (a + b) * 2;
+print("(a + b) * 2 (esperado 26) =");
+print(resultado);
+print("\n");
+
+
+// ============================================================
+// BLOCO 5 — Potência
+// 2 ^ 3 = 8
+// 2 ^ 3 ^ 2 = 2 ^ (3 ^ 2) = 2 ^ 9 = 512  (right-assoc)
+// ============================================================
+
+resultado = 2 ^ 3;
+print("2 ^ 3 (esperado 8) =");
+print(resultado);
+print("\n");
+
+resultado = a ^ 2;
+print("a ^ 2 (esperado 100) =");
+print(resultado);
+print("\n");
+
+
+// ============================================================
+// BLOCO 6 — Expressão complexa com tudo junto
+// a + b * 2 ^ 2 - 1 = 10 + (3 * (2^2)) - 1 = 10 + 12 - 1 = 21
+// ============================================================
+
+resultado = a + b * 2 ^ 2 - 1;
+print("a + b * 2^2 - 1 (esperado 21) =");
+print(resultado);
+print("\n");
+
+
+// ============================================================
+// BLOCO 7 — Variável sem valor inicial vale 0
+// ============================================================
+
+print("c sem inicializacao (esperado 0) =");
+print(c);
+print("\n");
+
+
+// ============================================================
+// BLOCO 8 — if simples
+// ============================================================
+
+if (a > b) {
+    print("correto: a maior que b");
+    print("\n");
 }
 
-// not
-if (not a == b) {
-    print("a diferente de b");
-}
 
-// elseif e else
-if (d > 100) {
-    print("grande");
-} else if (d > 50) {
-    print("medio");
-} else if (d > 10) {
-    print("pequeno");
+// ============================================================
+// BLOCO 9 — if/else
+// ============================================================
+
+if (b > a) {
+    print("errado: b nao e maior que a");
+    print("\n");
 } else {
-    print("minimo");
+    print("correto: else executado");
+    print("\n");
 }
 
-// while com and
-while (a > 0 and b >= 1) {
-    a = a - 1;
-    print(a);
+
+// ============================================================
+// BLOCO 10 — if/else if/else
+// ============================================================
+
+var nota = 75;
+
+if (nota >= 90) {
+    print("conceito A");
+    print("\n");
+} else if (nota >= 70) {
+    print("conceito B (esperado)");
+    print("\n");
+} else if (nota >= 50) {
+    print("conceito C");
+    print("\n");
+} else {
+    print("reprovado");
+    print("\n");
 }
 
-// print com expressao aritmetica
-print(a + b * 2);
 
-// or e not combinados
-if (not a == 0 or b != 3) {
-    print("condicao composta");
+// ============================================================
+// BLOCO 11 — Operadores de comparação: todos os 6
+// ============================================================
+
+if (a > b) {
+    print("a > b OK");
+    print("\n");
 }
 
-// parenteses em bool
-if ((a < 10 or b > 1) and c >= 0) {
-    print("parenteses booleanos ok");
+if (b < a) {
+    print("b < a OK");
+    print("\n");
 }
 
-// var sem inicializacao
-var e;
-e = d / 2 + 1;
-print(e);
+if (a >= 10) {
+    print("a >= 10 OK");
+    print("\n");
+}
+
+if (b <= 3) {
+    print("b <= 3 OK");
+    print("\n");
+}
+
+if (a == 10) {
+    print("a == 10 OK");
+    print("\n");
+}
+
+if (b != 10) {
+    print("b != 10 OK");
+    print("\n");
+}
+
+
+// ============================================================
+// BLOCO 12 — Operadores booleanos: and, or, not
+// ============================================================
+
+if (a > 5 and b < 10) {
+    print("and: correto");
+    print("\n");
+}
+
+if (a > 100 or b < 10) {
+    print("or: correto");
+    print("\n");
+}
+
+if (not a == 99) {
+    print("not: correto");
+    print("\n");
+}
+
+
+// ============================================================
+// BLOCO 13 — Precedência booleana
+// not > and > or
+//
+// not a == 10 or b < 10 and a > 0
+// = (not (a == 10)) or ((b < 10) and (a > 0))
+// = false or (true and true)
+// = false or true
+// = true → deve entrar
+// ============================================================
+
+if (not a == 10 or b < 10 and a > 0) {
+    print("precedencia bool OK");
+    print("\n");
+}
+
+
+// ============================================================
+// BLOCO 14 — Parênteses booleanos forçando outra precedência
+//
+// (a == 10 or b > 100) and a > 0
+// = (true or false) and true
+// = true and true
+// = true → deve entrar
+// ============================================================
+
+if ((a == 10 or b > 100) and a > 0) {
+    print("parenteses bool OK");
+    print("\n");
+}
+
+
+// ============================================================
+// BLOCO 15 — while simples
+// ============================================================
+
+var i = 0;
+print("contando de 1 a 5:");
+print("\n");
+
+while (i < 5) {
+    i = i + 1;
+    print(i);
+print("\n");
+}
+
+
+// ============================================================
+// BLOCO 16 — while com condição composta
+// ============================================================
+
+var x = 10;
+var y = 0;
+
+while (x > 0 and y < 3) {
+    x = x - 1;
+    y = y + 1;
+}
+
+print("x apos loop (esperado 7) =");
+print(x);
+print("\n");
+print("y apos loop (esperado 3) =");
+print(y);
+print("\n");
+
+
+// ============================================================
+// BLOCO 17 — if dentro de while
+// ============================================================
+
+var contador = 0;
+var pares = 0;
+var impares = 0;
+
+while (contador < 6) {
+    contador = contador + 1;
+    if (contador == 1 or contador == 3 or contador == 5) {
+        impares = impares + 1;
+    } else {
+        pares = pares + 1;
+    }
+}
+
+print("pares de 1 a 6 (esperado 3) =");
+print(pares);
+print("impares de 1 a 6 (esperado 3) =");
+print(impares);
+print("\n");
+
+
+// ============================================================
+// BLOCO 18 — while dentro de if
+// ============================================================
+
+var flag = 1;
+var soma = 0;
+
+if (flag == 1) {
+    var k = 1;
+    while (k <= 5) {
+        soma = soma + k;
+        k = k + 1;
+    }
+}
+
+print("soma de 1 a 5 (esperado 15) =");
+print(soma);
+print("\n");
+
+
+// ============================================================
+// BLOCO 19 — while dentro de while
+// ============================================================
+
+var linhas = 1;
+var total = 0;
+
+while (linhas <= 3) {
+    var colunas = 1;
+    while (colunas <= 3) {
+        total = total + 1;
+        colunas = colunas + 1;
+    }
+    linhas = linhas + 1;
+}
+
+print("total de iteracoes 3x3 (esperado 9) =");
+print(total);
+print("\n");
+
+
+// ============================================================
+// BLOCO 20 — Input do usuário
+// ============================================================
+
+var numero = input("Digite um numero: ");
+print("\n");
+
+print("voce digitou:");
+print(numero);
+print("\n");
+
+var dobro = numero * 2;
+print("o dobro e:");
+print(dobro);
+print("\n");
+
+if (numero > 0) {
+    print("numero positivo");
+print("\n");
+} else if (numero < 0) {
+    print("numero negativo");
+print("\n");
+} else {
+    print("numero e zero");
+print("\n");
+}
+
+
+// ============================================================
+// FIM DO PROGRAMA
+// ============================================================
+
+print("--- programa finalizado ---");
+print("\n");

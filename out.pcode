@@ -1,116 +1,753 @@
-//a
-
-// a = 2
 push $0
-push 2
+push 10
 sto
-
-// b = 3
 push $1
 push 3
 sto
-
-// print(a + b / 3)
-push $0
-lod
-
-push $1
-lod
-push 3
-div
-
-add
-out
-hlt
-
-//------------------------------------------------
-
-//b
-
-// a = 5
-push $0
-push 5
-sto
-
-// b = 3
-push $1
-push 3
-sto
-
-// r = (a * 2) + (b * b)
 push $2
-
+push 0
+sto
+push $3
+push 0
+sto
+push $3
 push $0
+lod
+push $1
+lod
+add
+sto
+push "a + b ="
+out
+push $3
+lod
+out
+push "\n"
+out
+push $3
+push $0
+lod
+push $1
+lod
+sub
+sto
+push "a - b ="
+out
+push $3
+lod
+out
+push "\n"
+out
+push $3
+push $0
+lod
+push $1
+lod
+mul
+sto
+push "a * b ="
+out
+push $3
+lod
+out
+push "\n"
+out
+push $3
+push $0
+lod
+push $1
+lod
+div
+sto
+push "a / b ="
+out
+push $3
+lod
+out
+push "\n"
+out
+push $3
+push $0
+lod
+push $1
 lod
 push 2
 mul
-
-push $1
-lod
-push $1
-lod
-mul
-
 add
 sto
-hlt
-
-//------------------------------------------------
-
-//c
-
-// x = 5
-push $0
-push 5
-sto
-
-// print(x > 100 / 5)
-push $0
-lod
-push 100
-push 5
-div
-grt
+push "a + b * 2 (esperado 16) ="
 out
-hlt
-
-//------------------------------------------------
-
-//d
-
-// x = 5
-push $0
-push 5
-sto
-
-// teste: x > 100 / 5
+push $3
+lod
+out
+push "\n"
+out
+push $3
 push $0
 lod
-push 100
-push 5
-div
-grt
-fjp ELSE
-
-// then
-push $0
+push $1
 lod
-push 10
+add
+push 2
 mul
+sto
+push "(a + b) * 2 (esperado 26) ="
 out
-ujp FIM
-
-ELSE:
+push $3
+lod
+out
+push "\n"
+out
+push $3
+push $4
+push 2
+sto
+push $5
+push 3
+sto
+push $6
+push 1
+sto
+L0:
+push $5
+lod
+push 0
+grt
+fjp L1
+push $6
+push $6
+lod
+push $4
+lod
+mul
+sto
+push $5
+push $5
+lod
+push 1
+sub
+sto
+ujp L0
+L1:
+push $6
+lod
+sto
+push "2 ^ 3 (esperado 8) ="
+out
+push $3
+lod
+out
+push "\n"
+out
+push $3
+push $4
+push $0
+lod
+sto
+push $5
+push 2
+sto
+push $6
+push 1
+sto
+L2:
+push $5
+lod
+push 0
+grt
+fjp L3
+push $6
+push $6
+lod
+push $4
+lod
+mul
+sto
+push $5
+push $5
+lod
+push 1
+sub
+sto
+ujp L2
+L3:
+push $6
+lod
+sto
+push "a ^ 2 (esperado 100) ="
+out
+push $3
+lod
+out
+push "\n"
+out
+push $3
+push $0
+lod
+push $1
+lod
+push $4
+push 2
+sto
+push $5
+push 2
+sto
+push $6
+push 1
+sto
+L4:
+push $5
+lod
+push 0
+grt
+fjp L5
+push $6
+push $6
+lod
+push $4
+lod
+mul
+sto
+push $5
+push $5
+lod
+push 1
+sub
+sto
+ujp L4
+L5:
+push $6
+lod
+mul
+add
+push 1
+sub
+sto
+push "a + b * 2^2 - 1 (esperado 21) ="
+out
+push $3
+lod
+out
+push "\n"
+out
+push "c sem inicializacao (esperado 0) ="
+out
+push $2
+lod
+out
+push "\n"
+out
+push $0
+lod
+push $1
+lod
+grt
+fjp L6
+push "correto: a maior que b"
+out
+push "\n"
+out
+ujp L6
+L6:
+push $1
+lod
+push $0
+lod
+grt
+fjp L8
+push "errado: b nao e maior que a"
+out
+push "\n"
+out
+ujp L7
+L8:
+push "correto: else executado"
+out
+push "\n"
+out
+L7:
+push $4
+push 75
+sto
+push $4
+lod
+push 90
+gte
+fjp L10
+push "conceito A"
+out
+push "\n"
+out
+ujp L9
+L10:
+push $4
+lod
+push 70
+gte
+fjp L11
+push "conceito B (esperado)"
+out
+push "\n"
+out
+ujp L9
+L11:
+push $4
+lod
+push 50
+gte
+fjp L12
+push "conceito C"
+out
+push "\n"
+out
+ujp L9
+L12:
+push "reprovado"
+out
+push "\n"
+out
+L9:
+push $0
+lod
+push $1
+lod
+grt
+fjp L13
+push "a > b OK"
+out
+push "\n"
+out
+ujp L13
+L13:
+push $1
+lod
+push $0
+lod
+let
+fjp L14
+push "b < a OK"
+out
+push "\n"
+out
+ujp L14
+L14:
 push $0
 lod
 push 10
-div
+gte
+fjp L15
+push "a >= 10 OK"
 out
-
-FIM:
+push "\n"
+out
+ujp L15
+L15:
+push $1
+lod
+push 3
+lte
+fjp L16
+push "b <= 3 OK"
+out
+push "\n"
+out
+ujp L16
+L16:
+push $0
+lod
+push 10
+equ
+fjp L17
+push "a == 10 OK"
+out
+push "\n"
+out
+ujp L17
+L17:
+push $1
+lod
+push 10
+neq
+fjp L18
+push "b != 10 OK"
+out
+push "\n"
+out
+ujp L18
+L18:
+push $0
+lod
+push 5
+grt
+push $1
+lod
+push 10
+let
+and
+fjp L19
+push "and: correto"
+out
+push "\n"
+out
+ujp L19
+L19:
+push $0
+lod
+push 100
+grt
+push $1
+lod
+push 10
+let
+or
+fjp L20
+push "or: correto"
+out
+push "\n"
+out
+ujp L20
+L20:
+push $0
+lod
+push 99
+equ
+not
+fjp L21
+push "not: correto"
+out
+push "\n"
+out
+ujp L21
+L21:
+push $0
+lod
+push 10
+equ
+not
+push $1
+lod
+push 10
+let
+push $0
+lod
+push 0
+grt
+and
+or
+fjp L22
+push "precedencia bool OK"
+out
+push "\n"
+out
+ujp L22
+L22:
+push $0
+lod
+push 10
+equ
+push $1
+lod
+push 100
+grt
+or
+push $0
+lod
+push 0
+grt
+and
+fjp L23
+push "parenteses bool OK"
+out
+push "\n"
+out
+ujp L23
+L23:
+push $5
+push 0
+sto
+push "contando de 1 a 5:"
+out
+push "\n"
+out
+L24:
+push $5
+lod
+push 5
+let
+fjp L25
+push $5
+push $5
+lod
+push 1
+add
+sto
+push $5
+lod
+out
+push "\n"
+out
+ujp L24
+L25:
+push $6
+push 10
+sto
+push $7
+push 0
+sto
+L26:
+push $6
+lod
+push 0
+grt
+push $7
+lod
+push 3
+let
+and
+fjp L27
+push $6
+push $6
+lod
+push 1
+sub
+sto
+push $7
+push $7
+lod
+push 1
+add
+sto
+ujp L26
+L27:
+push "x apos loop (esperado 7) ="
+out
+push $6
+lod
+out
+push "\n"
+out
+push "y apos loop (esperado 3) ="
+out
+push $7
+lod
+out
+push "\n"
+out
+push $8
+push 0
+sto
+push $9
+push 0
+sto
+push $10
+push 0
+sto
+L28:
+push $8
+lod
+push 6
+let
+fjp L29
+push $8
+push $8
+lod
+push 1
+add
+sto
+push $8
+lod
+push 1
+equ
+push $8
+lod
+push 3
+equ
+or
+push $8
+lod
+push 5
+equ
+or
+fjp L31
+push $10
+push $10
+lod
+push 1
+add
+sto
+ujp L30
+L31:
+push $9
+push $9
+lod
+push 1
+add
+sto
+L30:
+ujp L28
+L29:
+push "pares de 1 a 6 (esperado 3) ="
+out
+push $9
+lod
+out
+push "impares de 1 a 6 (esperado 3) ="
+out
+push $10
+lod
+out
+push "\n"
+out
+push $11
+push 1
+sto
+push $12
+push 0
+sto
+push $11
+lod
+push 1
+equ
+fjp L32
+push $13
+push 1
+sto
+L33:
+push $13
+lod
+push 5
+lte
+fjp L34
+push $12
+push $12
+lod
+push $13
+lod
+add
+sto
+push $13
+push $13
+lod
+push 1
+add
+sto
+ujp L33
+L34:
+ujp L32
+L32:
+push "soma de 1 a 5 (esperado 15) ="
+out
+push $12
+lod
+out
+push "\n"
+out
+push $14
+push 1
+sto
+push $15
+push 0
+sto
+L35:
+push $14
+lod
+push 3
+lte
+fjp L36
+push $16
+push 1
+sto
+L37:
+push $16
+lod
+push 3
+lte
+fjp L38
+push $15
+push $15
+lod
+push 1
+add
+sto
+push $16
+push $16
+lod
+push 1
+add
+sto
+ujp L37
+L38:
+push $14
+push $14
+lod
+push 1
+add
+sto
+ujp L35
+L36:
+push "total de iteracoes 3x3 (esperado 9) ="
+out
+push $15
+lod
+out
+push "\n"
+out
+push $17
+push "Digite um numero: "
+out
+in
+sto
+push "\n"
+out
+push "voce digitou:"
+out
+push $17
+lod
+out
+push "\n"
+out
+push $18
+push $17
+lod
+push 2
+mul
+sto
+push "o dobro e:"
+out
+push $18
+lod
+out
+push "\n"
+out
+push $17
+lod
+push 0
+grt
+fjp L40
+push "numero positivo"
+out
+push "\n"
+out
+ujp L39
+L40:
+push $17
+lod
+push 0
+let
+fjp L41
+push "numero negativo"
+out
+push "\n"
+out
+ujp L39
+L41:
+push "numero e zero"
+out
+push "\n"
+out
+L39:
+push "--- programa finalizado ---"
+out
+push "\n"
+out
 hlt
-
-//------------------------------------------------
-
-
-
