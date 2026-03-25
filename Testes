@@ -1,44 +1,54 @@
+// teste completo da linguagem
 
-var a = 10
-var b = 3
-var c = input("digite um valor")
-var d
+var a = 10;
+var b = 3;
+var c = input("digite um valor");
+var d;
 
-d = a + b * 2 ^ 3 - 1
+// operadores aritmeticos e precedencia
+d = a + b * 2 ^ 3 - 1;
 
+// and / or / not
 if (a > 5 and b < 10) {
-    print("a maior 5 e b menor 10")
+    print("a maior 5 e b menor 10");
 }
 
+// not
 if (not a == b) {
-    print("a diferente de b")
+    print("a diferente de b");
 }
 
+// elseif e else
 if (d > 100) {
-    print("grande")
+    print("grande");
 } else if (d > 50) {
-    print("medio")
+    print("medio");
 } else if (d > 10) {
-    print("pequeno")
+    print("pequeno");
 } else {
-    print("nulo")
+    print("minimo");
 }
 
+// while com and
 while (a > 0 and b >= 1) {
-    a = a - 1
-    print(a)
+    a = a - 1;
+    print(a);
 }
 
-print(a + b * 2)
+// print com expressao aritmetica
+print(a + b * 2);
 
+// or e not combinados
 if (not a == 0 or b != 3) {
-    print("condicao composta")
+    print("condicao composta");
 }
 
+// parenteses em bool
 if ((a < 10 or b > 1) and c >= 0) {
-    print("parenteses booleanos ok")
+    print("parenteses booleanos ok");
 }
 
-var e
-e = d / 2 + 1
-print(e)
+// var sem inicializacao
+var e;
+e = d / 2 + 1;
+print(e);

@@ -1,5 +1,7 @@
 package com.uepb.compiler;
 
+import org.antlr.v4.runtime.tree.ParseTree;
+
 import com.uepb.ExprBaseVisitor;
 import com.uepb.ExprParser.AndContext;
 import com.uepb.ExprParser.AndPassthroughContext;
@@ -34,6 +36,7 @@ public class Calculadora extends ExprBaseVisitor<Void> {
     private final ScopeControl scopes = new ScopeControl();
     private final MemoryMapper mapper = new MemoryMapper();
     private final StringBuilder code = new StringBuilder();
+    private final PCodeWriter pcode = new PCodeWriter();
     private int labelCounter = 0;
 
     private String createLabel() {
