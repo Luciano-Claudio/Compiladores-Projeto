@@ -315,13 +315,15 @@ public class Calculadora extends ExprBaseVisitor<Void> {
         // Parênteses não geram instrução — a precedência já foi resolvida pela gramática
         visit(ctx.NESTED);
         return null;
+        
     }
 
     @Override
     public Void visitNumero(NumeroContext ctx) {
-        // Preserva o texto original do token (ex: "42" ou "3.14")
+        
         pcode.pushNumberRaw(ctx.NUMBER().getText());
         return null;
+
     }
 
     @Override

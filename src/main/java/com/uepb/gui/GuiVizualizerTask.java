@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.GridBagLayout;
+import java.awt.Rectangle;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -39,14 +40,13 @@ public class GuiVizualizerTask implements Runnable {
             viewer.setScale(zoomFactor);
             JPanel canvas = new JPanel(new GridBagLayout());
             canvas.setBackground(new Color(240, 240, 240));
-            canvas.setPreferredSize(new Dimension(5000, 5000));
             canvas.add(viewer);
+            refreshCanvasLayout(viewer, canvas);
 
             JScrollPane scrollPane = new JScrollPane(canvas);
             scrollPane.setBorder(null);
             SwingUtilities.invokeLater(() -> {
-                JViewport vp = scrollPane.getViewport();
-                vp.setViewPosition(new Point(2500 - vp.getWidth()/2, 2500 - vp.getHeight()/2));
+                centerViewportOnViewer(scrollPane, viewer);
             });
 
             setupInteractivity(viewer, canvas, scrollPane);
@@ -78,8 +78,10 @@ public class GuiVizualizerTask implements Runnable {
                 double delta = 0.1 * e.getWheelRotation();
                 zoomFactor = Math.max(0.1, Math.min(zoomFactor - delta, 5.0));
                 viewer.setScale(zoomFactor);
+                refreshCanvasLayout(viewer, canvas);
                 canvas.revalidate();
                 canvas.repaint();
+                centerViewportOnViewer(scrollPane, viewer);
             }
 
             @Override
@@ -114,5 +116,28 @@ public class GuiVizualizerTask implements Runnable {
         viewer.addMouseWheelListener(interactiveAdapter);
         viewer.addMouseListener(interactiveAdapter);
         viewer.addMouseMotionListener(interactiveAdapter);
+    }
+
+    private void refreshCanvasLayout(TreeViewer viewer, JPanel canvas) {
+        var treeSize = viewer.getPreferredSize();
+        var margin = 300;
+        var minW = 1600;
+        var minH = 1000;
+
+        var width = Math.max(minW, treeSize.width + (margin * 2));
+        var height = Math.max(minH, treeSize.height + (margin * 2));
+        canvas.setPreferredSize(new Dimension(width, height));
+    }
+
+    private void centerViewportOnViewer(JScrollPane scrollPane, TreeViewer viewer) {
+        JViewport viewport = scrollPane.getViewport();
+        Rectangle bounds = viewer.getBounds();
+
+        int centerX = bounds.x + (bounds.width / 2);
+        int centerY = bounds.y + (bounds.height / 2);
+        int targetX = Math.max(0, centerX - (viewport.getWidth() / 2));
+        int targetY = Math.max(0, centerY - (viewport.getHeight() / 2));
+
+        viewport.setViewPosition(new Point(targetX, targetY));
     }
 }
